@@ -10,6 +10,7 @@ module.exports = function(api) {
             // This needs to be mirrored in tsconfig.json
             "home": "./src",
             "assets": "./assets",
+            "configs": "./configs",
           },
         },
       ],

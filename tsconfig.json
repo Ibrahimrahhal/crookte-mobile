@@ -4,6 +4,10 @@
     "strict": true,
     "paths": {
       "home/*": ["./src/*"],
+      "assets/*": ["./assets/*"],
+      "configs/*": ["./configs/*"],
+      "configs": ["./configs/index.ts"],
     },
+    "allowImportingTsExtensions": true
   },
 }

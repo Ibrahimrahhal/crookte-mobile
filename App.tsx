@@ -1,21 +1,27 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import t from "home/utils/i18n";
+import 'react-native-gesture-handler';
+import EntryNavigator from 'home/navigators/entry';
+import { NavigationContainer } from '@react-navigation/native';
+import { MD3LightTheme as DefaultTheme,  PaperProvider } from 'react-native-paper';
+import configs from 'configs';
+
+const theme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    primary: configs.mainColor,
+  },
+};
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>{t("hello_world")}</Text>
-      <StatusBar style="auto" />
-    </View>
+    <PaperProvider theme={theme}>
+
+    <NavigationContainer>
+      
+      <EntryNavigator />
+    </NavigationContainer>
+    </PaperProvider>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+
