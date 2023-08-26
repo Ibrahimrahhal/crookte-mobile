@@ -5,8 +5,9 @@ import { useEffect, useRef } from "react";
 import DrivingCar from "assets/animations/car-driving.json";
 import config from "configs";
 import { statusBarHeight } from "home/utils/generic";
-import { Text, Button } from "react-native-paper";
 import Login from "home/sections/auth/login";
+import SignUp from "home/sections/auth/signup";
+import t from "home/utils/i18n";
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -57,8 +58,8 @@ export default function Auth() {
             },
           }}
         >
-          <Tab.Screen name="تسجيل الدخول" component={Login} />
-          <Tab.Screen name="انشاء حساب" component={() => <Text>asasas</Text>} />
+          <Tab.Screen name={t("login")} component={Login} />
+          <Tab.Screen name={t("signup")} component={SignUp} />
         </Tab.Navigator>
       </View>
     </View>
