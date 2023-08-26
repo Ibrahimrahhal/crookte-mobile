@@ -2,6 +2,7 @@ import { View, StyleSheet, ScrollView, Platform } from "react-native";
 import { Text, Button, TextInput } from "react-native-paper";
 import t from "home/utils/i18n";
 import { useState } from "react";
+import * as Animatable from "react-native-animatable";
 
 export default function Login() {
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -9,50 +10,52 @@ export default function Login() {
   const [isShowPassword, setIsShowPassword] = useState(false);
   return (
     <ScrollView style={styles.container}>
-      <Text variant="headlineMedium" style={styles.text}>
-        {t("login_welcome")}
-      </Text>
-      <Text
-        variant="bodyLarge"
-        style={{ ...styles.text, ...styles.firstInputFeild }}
-      >
-        {t("login_welcome_sub")}
-      </Text>
-      <TextInput
-        style={styles.textInput}
-        label={t("login_phone_number")}
-        mode="outlined"
-        value={phoneNumber}
-        right={<TextInput.Icon icon="phone" style={styles.textRightIcons} />}
-        onChangeText={(text) => setPhoneNumber(text)}
-      />
-      <TextInput
-        style={{
-          marginTop: 20,
-          ...styles.textInput,
-        }}
-        label={t("login_password")}
-        mode="outlined"
-        secureTextEntry={!isShowPassword}
-        value={password}
-        right={
-          <TextInput.Icon
-            style={styles.textRightIcons}
-            icon={isShowPassword ? "eye-off" : "eye"}
-            onPress={() => setIsShowPassword(!isShowPassword)}
-          />
-        }
-        onChangeText={(text) => setPassword(text)}
-      />
-      <View>
-        <Button
-          mode="contained"
-          onPress={() => console.log("Pressed")}
-          style={styles.button}
+      <Animatable.View animation="fadeInUp">
+        <Text variant="headlineMedium" style={styles.text}>
+          {t("login_welcome")}
+        </Text>
+        <Text
+          variant="bodyLarge"
+          style={{ ...styles.text, ...styles.firstInputFeild }}
         >
-          {t("login_button")}
-        </Button>
-      </View>
+          {t("login_welcome_sub")}
+        </Text>
+        <TextInput
+          style={styles.textInput}
+          label={t("login_phone_number")}
+          mode="outlined"
+          value={phoneNumber}
+          right={<TextInput.Icon icon="phone" style={styles.textRightIcons} />}
+          onChangeText={(text) => setPhoneNumber(text)}
+        />
+        <TextInput
+          style={{
+            marginTop: 20,
+            ...styles.textInput,
+          }}
+          label={t("login_password")}
+          mode="outlined"
+          secureTextEntry={!isShowPassword}
+          value={password}
+          right={
+            <TextInput.Icon
+              style={styles.textRightIcons}
+              icon={isShowPassword ? "eye-off" : "eye"}
+              onPress={() => setIsShowPassword(!isShowPassword)}
+            />
+          }
+          onChangeText={(text) => setPassword(text)}
+        />
+        <View>
+          <Button
+            mode="contained"
+            onPress={() => console.log("Pressed")}
+            style={styles.button}
+          >
+            {t("login_button")}
+          </Button>
+        </View>
+      </Animatable.View>
     </ScrollView>
   );
 }
