@@ -18,7 +18,7 @@ export default function GetStarted({ navigation }: any) {
         </View>
         <View>
           <Svg height="100" width="100%" viewBox="0 0 100 100">
-            <Circle cx="50" cy="-300" r="120%" fill={config.mainColor} />
+            <Circle cx="50" cy="-300" r="125%" fill={config.mainColor} />
           </Svg>
         </View>
         <View style={styles.buttomWordContainer}>
@@ -59,13 +59,13 @@ const styles = StyleSheet.create({
   },
   buttomWordContainer: {
     alignItems: "center",
-    paddingTop: "5%",
+    padding: "5%",
   },
   arabText: {
     textAlign: "center",
-    marginTop: "5%",
+    marginTop: "10%",
   },
   buttonStyle: {
-    marginTop: "5%",
+    marginTop: "8%",
   },
 });
