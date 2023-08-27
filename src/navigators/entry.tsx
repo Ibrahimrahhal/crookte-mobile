@@ -6,7 +6,7 @@ const Stack = createStackNavigator();
 
 export default function EntryNavigator() {
   return (
-    <Stack.Navigator initialRouteName={"Authentication"}>
+    <Stack.Navigator initialRouteName={"GetStarted"}>
       <Stack.Screen
         name="GetStarted"
         component={GetStarted}
