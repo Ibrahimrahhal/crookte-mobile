@@ -15,5 +15,9 @@
     "signup_last_name": "الاسم الاخير",
     "signup_national_id": "الرقم الوطني",
     "signup_repeat_password": "اعادة كلمة المرور",
-    "signup_button": "تسجيل جديد"
+    "signup_button": "تسجيل جديد",
+    "homeTabLabel": "الرئيسية",
+    "reportsTabLabel": "تقارير الحوادث", 
+    "menuTabLabel": "القائمة",
+    "notificationsTabLabel": "الاشعارات"
 }
