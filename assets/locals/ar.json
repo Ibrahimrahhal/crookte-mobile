@@ -20,10 +20,11 @@
     "reportsTabLabel": "تقارير الحوادث", 
     "menuTabLabel": "القائمة",
     "notificationsTabLabel": "الاشعارات",
-    "welcome": "اهلا بك يا إبراهيم",
-    "newReport": "حادث جديد؟",
+    "welcome": "حمدا على سلامتك يا إبراهيم",
+    "newReport": "الاجراءات المتوفرة",
     "selfReport": "تقرير ذاتي جديد",
     "requestHelp": "طلب دورية مرور",
     "newReportButton": "بدء تعبئة تقرير حادث جديد",
-    "requestHelpButton": "طلب دورية الي موقعك الأن"
+    "requestHelpButton": "طلب دورية الي موقعك الأن",
+    "next_button": "اكمل الى الخطوة التالية"
 }
