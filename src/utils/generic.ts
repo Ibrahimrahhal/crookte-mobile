@@ -1,21 +1,55 @@
 import { Dimensions, Platform, StatusBar } from "react-native";
 
+const STATUSBAR_DEFAULT_HEIGHT = 20;
+const STATUSBAR_X_HEIGHT = 44;
+const STATUSBAR_IP12_HEIGHT = 47;
+const STATUSBAR_IP12MAX_HEIGHT = 47;
+const STATUSBAR_IP14PRO_HEIGHT = 49;
+
 const X_WIDTH = 375;
 const X_HEIGHT = 812;
 
 const XSMAX_WIDTH = 414;
 const XSMAX_HEIGHT = 896;
 
-const { height, width } = Dimensions.get("window");
+const IP12_WIDTH = 390;
+const IP12_HEIGHT = 844;
 
-export const isIPhoneX = () =>
-  Platform.OS === "ios" && !Platform.isPad && !Platform.isTV
-    ? (width === X_WIDTH && height === X_HEIGHT) ||
-      (width === XSMAX_WIDTH && height === XSMAX_HEIGHT)
-    : false;
+const IP12MAX_WIDTH = 428;
+const IP12MAX_HEIGHT = 926;
 
-export const statusBarHeight = Platform.select({
-  ios: isIPhoneX() ? 44 : 20,
-  android: StatusBar.currentHeight,
-  default: 0,
-});
+const IP14PRO_WIDTH = 393;
+const IP14PRO_HEIGHT = 852;
+
+const IP14PROMAX_WIDTH = 430;
+const IP14PROMAX_HEIGHT = 932;
+
+const { height: W_HEIGHT, width: W_WIDTH } = Dimensions.get("window");
+
+let _statusBarHeight = STATUSBAR_DEFAULT_HEIGHT;
+
+if (Platform.OS === "ios" && !Platform.isPad && !Platform.isTV) {
+  if (W_WIDTH === X_WIDTH && W_HEIGHT === X_HEIGHT) {
+    _statusBarHeight = STATUSBAR_X_HEIGHT;
+  } else if (W_WIDTH === XSMAX_WIDTH && W_HEIGHT === XSMAX_HEIGHT) {
+    _statusBarHeight = STATUSBAR_X_HEIGHT;
+  } else if (W_WIDTH === IP12_WIDTH && W_HEIGHT === IP12_HEIGHT) {
+    _statusBarHeight = STATUSBAR_IP12_HEIGHT;
+  } else if (W_WIDTH === IP12MAX_WIDTH && W_HEIGHT === IP12MAX_HEIGHT) {
+    _statusBarHeight = STATUSBAR_IP12MAX_HEIGHT;
+  } else if (W_WIDTH === IP14PROMAX_WIDTH && W_HEIGHT === IP14PROMAX_HEIGHT) {
+    _statusBarHeight = STATUSBAR_IP14PRO_HEIGHT;
+  } else if (W_WIDTH === IP14PRO_WIDTH && W_HEIGHT === IP14PRO_HEIGHT) {
+    _statusBarHeight = STATUSBAR_IP14PRO_HEIGHT;
+  }
+}
+
+function get_statusBarHeight() {
+  return Platform.select({
+    ios: _statusBarHeight,
+    android: StatusBar.currentHeight,
+    default: 0,
+  });
+}
+
+export const statusBarHeight = get_statusBarHeight();

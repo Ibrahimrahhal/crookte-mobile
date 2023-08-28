@@ -19,5 +19,11 @@
     "homeTabLabel": "الرئيسية",
     "reportsTabLabel": "تقارير الحوادث", 
     "menuTabLabel": "القائمة",
-    "notificationsTabLabel": "الاشعارات"
+    "notificationsTabLabel": "الاشعارات",
+    "welcome": "اهلا بك يا إبراهيم",
+    "newReport": "حادث جديد؟",
+    "selfReport": "تقرير ذاتي جديد",
+    "requestHelp": "طلب دورية مرور",
+    "newReportButton": "بدء تعبئة تقرير حادث جديد",
+    "requestHelpButton": "طلب دورية الي موقعك الأن"
 }
