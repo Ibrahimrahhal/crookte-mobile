@@ -26,5 +26,16 @@
     "requestHelp": "طلب دورية مرور",
     "newReportButton": "بدء تعبئة تقرير حادث جديد",
     "requestHelpButton": "طلب دورية الي موقعك الأن",
-    "next_button": "اكمل الى الخطوة التالية"
+    "next_button": "اكمل الى الخطوة التالية",
+    "helpTabLabel": "المساعدة",
+    "findingYourLocation": "جاري تحديد موقعك الحالي",
+    "youAreHere": "انت هنا",
+    "locationIdentified": "تم تحديد موقعك الحالي",
+    "fillToCompleteReport": "قم بتعبئة البيانات التالية لارسال الطلب",
+    "includeAnAmbulance": "هل يجب ارسال سيارة اسعاف؟",
+    "includeAnFireCar": "هل يجب ارسال سيارة اطفاء؟",
+    "wereInTheWay": "نحن في الطريق",
+    "wereInTheWayInfo": "لقد تلقينا المعلومات المطلوبه وسنصل اليك في مدة اقصاها ١٠ دقائق",
+    "close": "اغلاق",
+    "requestHelpButtonLoading": "جاري ارسال الطلب"
 }

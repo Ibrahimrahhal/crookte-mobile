@@ -23,11 +23,11 @@ export default function HomeNavigator() {
         }}
       >
         <Tab.Screen
-          name="Home"
+          name="Help"
           component={Home}
           options={{
             headerShown: false,
-            tabBarLabel: t("homeTabLabel"),
+            tabBarLabel: t("helpTabLabel"),
             tabBarIcon: ({ size, color, focused }) => (
               <View style={styles.iconWrapper}>
                 <View
@@ -36,7 +36,11 @@ export default function HomeNavigator() {
                     ...(focused ? styles.iconIndicatorActive : {}),
                   }}
                 />
-                <AntDesign name="home" size={size} color={color} />
+                <AntDesign
+                  name="exclamationcircleo"
+                  size={size}
+                  color={color}
+                />
               </View>
             ),
           }}
@@ -56,6 +60,26 @@ export default function HomeNavigator() {
                   }}
                 />
                 <AntDesign name="profile" size={size} color={color} />
+              </View>
+            ),
+          }}
+        />
+
+        <Tab.Screen
+          name="Home"
+          component={Home}
+          options={{
+            headerShown: false,
+            tabBarLabel: t("homeTabLabel"),
+            tabBarIcon: ({ size, color, focused }) => (
+              <View style={styles.iconWrapper}>
+                <View
+                  style={{
+                    ...styles.iconIndicator,
+                    ...(focused ? styles.iconIndicatorActive : {}),
+                  }}
+                />
+                <AntDesign name="home" size={size} color={color} />
               </View>
             ),
           }}

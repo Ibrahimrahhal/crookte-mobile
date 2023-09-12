@@ -4,6 +4,7 @@ import t from "home/utils/i18n";
 import { useState } from "react";
 import * as Animatable from "react-native-animatable";
 import { AntDesign } from "@expo/vector-icons";
+import configs from "configs/index";
 
 export default function SignUp() {
   const [firstName, setFirstName] = useState("");
@@ -165,12 +166,15 @@ export default function SignUp() {
             )}
             {currentStep > 0 && (
               <Button
-                mode="contained"
+                mode="text"
                 onPress={() => setCurrentStep(currentStep - 1)}
                 style={{ ...styles.button, opacity: 0.5 }}
-                buttonColor="black"
               >
-                <AntDesign name="arrowright" size={24} color="white" />
+                <AntDesign
+                  name="arrowright"
+                  size={24}
+                  color={configs.mainColor}
+                />
               </Button>
             )}
           </View>
