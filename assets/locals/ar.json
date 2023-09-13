@@ -37,5 +37,8 @@
     "wereInTheWay": "نحن في الطريق",
     "wereInTheWayInfo": "لقد تلقينا المعلومات المطلوبه وسنصل اليك في مدة اقصاها ١٠ دقائق",
     "close": "اغلاق",
-    "requestHelpButtonLoading": "جاري ارسال الطلب"
+    "requestHelpButtonLoading": "جاري ارسال الطلب",
+    "newReportPageTitle": "تقرير حادث جديد",
+    "locationDummyText": " شارع مكة - عمان",
+    "timeDateDummyText": "  ١٢:٣٠ مساء - ٢٠١٩/١٠/٢٠"
 }

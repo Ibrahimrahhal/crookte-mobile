@@ -1,10 +1,10 @@
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import Home from "home/pages/home";
 import t from "home/utils/i18n";
 import { AntDesign } from "@expo/vector-icons";
 import { StatusBar } from "expo-status-bar";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { View, StyleSheet } from "react-native";
 import configs from "configs";
+import HomeChoicesNavigator from "home/navigators/home-choices";
 
 const Tab = createBottomTabNavigator();
 
@@ -12,7 +12,7 @@ export default function HomeNavigator() {
   return (
     <>
       <Tab.Navigator
-        initialRouteName="Home"
+        initialRouteName="ChoicesNavigator"
         screenOptions={{
           tabBarActiveTintColor: configs.mainColor,
           tabBarStyle: {
@@ -24,7 +24,7 @@ export default function HomeNavigator() {
       >
         <Tab.Screen
           name="Help"
-          component={Home}
+          component={HomeChoicesNavigator}
           options={{
             headerShown: false,
             tabBarLabel: t("helpTabLabel"),
@@ -47,7 +47,7 @@ export default function HomeNavigator() {
         />
         <Tab.Screen
           name="Reports"
-          component={Home}
+          component={HomeChoicesNavigator}
           options={{
             headerShown: false,
             tabBarLabel: t("reportsTabLabel"),
@@ -66,8 +66,8 @@ export default function HomeNavigator() {
         />
 
         <Tab.Screen
-          name="Home"
-          component={Home}
+          name="ChoicesNavigator"
+          component={HomeChoicesNavigator}
           options={{
             headerShown: false,
             tabBarLabel: t("homeTabLabel"),
@@ -86,7 +86,7 @@ export default function HomeNavigator() {
         />
         <Tab.Screen
           name="Notifications"
-          component={Home}
+          component={HomeChoicesNavigator}
           options={{
             headerShown: false,
             tabBarLabel: t("notificationsTabLabel"),
@@ -105,7 +105,7 @@ export default function HomeNavigator() {
         />
         <Tab.Screen
           name="Menu"
-          component={Home}
+          component={HomeChoicesNavigator}
           options={{
             headerShown: false,
             tabBarLabel: t("menuTabLabel"),

@@ -80,7 +80,7 @@ const RequestedHelpModal = ({
     </Portal>
   );
 };
-export default function Home() {
+export default function Home({ navigation }: any) {
   const [selected, setSelected] = useState(0);
   const [location, setLocation] = useState<any>(null);
   const [hasSelected, setHasSelected] = useState(false);
@@ -414,7 +414,8 @@ export default function Home() {
           mode="contained"
           onPress={() => {
             setHasSelected(true);
-            handleGetLocation();
+            if (selected === 0) navigation.navigate("NewReport");
+            else handleGetLocation();
           }}
           style={{
             margin: 10,
