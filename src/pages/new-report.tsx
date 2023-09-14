@@ -6,8 +6,10 @@ import config from "configs";
 import { AntDesign } from "@expo/vector-icons";
 import { statusBarHeight } from "home/utils/generic";
 import t from "home/utils/i18n";
+import * as Animatable from "react-native-animatable";
+
 import CarCrash from "assets/imgs/car-crash.svg";
-import { FontAwesome5 } from "@expo/vector-icons";
+import { FontAwesome5, FontAwesome } from "@expo/vector-icons";
 import Counter from "home/components/counter";
 import { useState } from "react";
 
@@ -22,96 +24,157 @@ export default function NewReport({ navigation }: { navigation: any }) {
           </Button> */}
         </View>
         <View style={styles.textWrapper}>
-          <View style={styles.carImageWrapper}>
-            <CarCrash />
+          <View
+            style={{
+              width: "100%",
+              paddingHorizontal: 20,
+            }}
+          >
+            <Animatable.View animation={"fadeInRight"}>
+              <Text style={styles.pageTitle} variant="headlineMedium">
+                {t("newReportPageTitle")}
+              </Text>
+            </Animatable.View>
+            <Animatable.View animation={"fadeInRight"} delay={300}>
+              <Text variant="headlineMedium" style={styles.pageDescription}>
+                {t("newReportPageDescription")}
+              </Text>
+            </Animatable.View>
           </View>
           <View style={styles.cards}>
-            <Card
-              mode="outlined"
-              style={{
-                backgroundColor: "#fafafa",
-                borderColor: "rgba(0,0,0,0.1)",
-              }}
-            >
-              <Card.Content>
-                <View style={styles.cardItem}>
-                  <View style={styles.iconWrapper}>
-                    <AntDesign name="enviroment" size={24} color="black" />
-                  </View>
-                  <View style={styles.cardItemText}>
-                    <Text style={styles.locationTextMain}>
-                      {t("locationDummyText")}
-                    </Text>
-                    <Text style={styles.locationTextSecondary}>
-                      {t("locationDummyTextSecondary")}
-                    </Text>
-                  </View>
-                </View>
-              </Card.Content>
-            </Card>
-            <Card
-              mode="outlined"
-              style={{
-                backgroundColor: "#fafafa",
-                borderColor: "rgba(0,0,0,0.1)",
-                marginTop: 10,
-              }}
-            >
-              <Card.Content>
-                <View style={styles.cardItem}>
-                  <View style={styles.iconWrapper}>
-                    <AntDesign name="clockcircle" size={24} color="black" />
-                  </View>
-                  <View style={styles.cardItemText}>
-                    <Text style={styles.locationTextMain}>
-                      {t("timeDateDummyText")}
-                    </Text>
-                    <Text style={styles.locationTextSecondary}>
-                      {t("timeDateDummyTextSecondary")}
-                    </Text>
-                  </View>
-                </View>
-              </Card.Content>
-            </Card>
-            <Card
-              mode="outlined"
-              style={{
-                backgroundColor: "#fafafa",
-                borderColor: "rgba(0,0,0,0.1)",
-                marginTop: 10,
-              }}
-            >
-              <Card.Content>
-                <View style={styles.cardItem}>
-                  <View style={styles.iconWrapper}>
-                    <FontAwesome5 name="car-crash" size={24} color="black" />
-                  </View>
-                  <View style={styles.cardItemText}>
-                    <Text style={styles.locationTextMain}>
-                      {t("carInvolvedCount")}
-                    </Text>
-                    <Text style={styles.locationTextSecondary}>
-                      {t("countShouldBeMoreThanZero")}
-                    </Text>
-                    <View style={styles.counterWrapper}>
-                      <Counter
-                        value={numberOfCarsInvolved}
-                        onChange={(newVal) => {
-                          if (newVal < 1) return;
-                          setNumberOfCarsInvolved(newVal);
-                        }}
-                      />
+            <Animatable.View animation={"fadeInUp"} delay={500}>
+              <Card
+                mode="outlined"
+                style={{
+                  backgroundColor: "#fafafa",
+                  borderColor: "rgba(0,0,0,0.1)",
+                }}
+              >
+                <Card.Content>
+                  <View style={styles.cardItem}>
+                    <View style={styles.iconWrapper}>
+                      <FontAwesome name="user" size={24} color="black" />
+                    </View>
+                    <View style={styles.cardItemText}>
+                      <Text style={styles.locationTextMain}>
+                        {t("userReporterDummyText")}
+                      </Text>
+                      <Text style={styles.locationTextSecondary}>
+                        {t("userReporter")}
+                      </Text>
                     </View>
                   </View>
-                </View>
-              </Card.Content>
-            </Card>
+                </Card.Content>
+              </Card>
+            </Animatable.View>
+            <Animatable.View animation={"fadeInUp"} delay={600}>
+              <Card
+                mode="outlined"
+                style={{
+                  backgroundColor: "#fafafa",
+                  borderColor: "rgba(0,0,0,0.1)",
+                  marginTop: 10,
+                }}
+              >
+                <Card.Content>
+                  <View style={styles.cardItem}>
+                    <View style={styles.iconWrapper}>
+                      <AntDesign name="enviroment" size={24} color="black" />
+                    </View>
+                    <View style={styles.cardItemText}>
+                      <Text style={styles.locationTextMain}>
+                        {t("locationDummyText")}
+                      </Text>
+                      <Text style={styles.locationTextSecondary}>
+                        {t("locationDummyTextSecondary")}
+                      </Text>
+                    </View>
+                  </View>
+                </Card.Content>
+              </Card>
+            </Animatable.View>
+            <Animatable.View animation={"fadeInUp"} delay={700}>
+              <Card
+                mode="outlined"
+                style={{
+                  backgroundColor: "#fafafa",
+                  borderColor: "rgba(0,0,0,0.1)",
+                  marginTop: 10,
+                }}
+              >
+                <Card.Content>
+                  <View style={styles.cardItem}>
+                    <View style={styles.iconWrapper}>
+                      <AntDesign name="clockcircle" size={24} color="black" />
+                    </View>
+                    <View style={styles.cardItemText}>
+                      <Text style={styles.locationTextMain}>
+                        {t("timeDateDummyText")}
+                      </Text>
+                      <Text style={styles.locationTextSecondary}>
+                        {t("timeDateDummyTextSecondary")}
+                      </Text>
+                    </View>
+                  </View>
+                </Card.Content>
+              </Card>
+            </Animatable.View>
+            <Animatable.View animation={"fadeInUp"} delay={800}>
+              <Card
+                mode="outlined"
+                style={{
+                  backgroundColor: "#fafafa",
+                  borderColor: "rgba(0,0,0,0.1)",
+                  marginTop: 10,
+                }}
+              >
+                <Card.Content>
+                  <View style={styles.cardItem}>
+                    <View style={styles.iconWrapper}>
+                      <FontAwesome5 name="car-crash" size={24} color="black" />
+                    </View>
+                    <View style={styles.cardItemText}>
+                      <Text style={styles.locationTextMain}>
+                        {t("carInvolvedCount")}
+                      </Text>
+                      <Text style={styles.locationTextSecondary}>
+                        {t("countShouldBeMoreThanZero")}
+                      </Text>
+                      <View style={styles.counterWrapper}>
+                        <Counter
+                          value={numberOfCarsInvolved}
+                          onChange={(newVal) => {
+                            if (newVal < 1) return;
+                            setNumberOfCarsInvolved(newVal);
+                          }}
+                        />
+                      </View>
+                    </View>
+                  </View>
+                </Card.Content>
+              </Card>
+            </Animatable.View>
           </View>
         </View>
       </View>
-      <View>
-        <ScrollView style={{ flex: 1 }}></ScrollView>
-      </View>
+
+        <Animatable.View animation={"fadeIn"} delay={1000} style={{
+          flex: 1,
+        }}>
+          <Button
+            mode="contained"
+            onPress={() => {}}
+            style={{
+              marginHorizontal: "5%",
+              width: "90%",
+              borderRadius: 10,
+              position: "absolute",
+              bottom: 20,
+            }}
+          >
+            {t("continueTheReport")}
+          </Button>
+        </Animatable.View>
       <StatusBar style="dark" />
     </>
   );
@@ -119,15 +182,9 @@ export default function NewReport({ navigation }: { navigation: any }) {
 
 const styles = StyleSheet.create({
   header: {},
-
   backBtnWrapper: {
     display: "flex",
     flexDirection: "row",
-  },
-  carImageWrapper: {
-    width: Dimensions.get("window").width * 0.7,
-    maxHeight: Dimensions.get("window").height * 0.4,
-    marginTop: -30,
   },
   textWrapper: {
     justifyContent: "center",
@@ -161,10 +218,22 @@ const styles = StyleSheet.create({
   },
   cards: {
     width: "90%",
-    marginTop: -20,
   },
   counterWrapper: {
     paddingTop: 20,
     flexDirection: "row-reverse",
+  },
+  pageTitle: {
+    marginTop: 30,
+    marginBottom: 10,
+    fontSize: 28,
+    fontWeight: "bold",
+    lineHeight: 43,
+  },
+  pageDescription: {
+    fontSize: 14,
+    color: "rgba(0,0,0,0.5)",
+    lineHeight: 21,
+    marginBottom: 50,
   },
 });

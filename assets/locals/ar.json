@@ -44,6 +44,10 @@
     "timeDateDummyText": "١٢:٣٠ مساء يوم الخميس",
     "timeDateDummyTextSecondary": "٢٠١٩/١٠/٢٠",
     "carInvolvedCount": "عدد السيارات في بالحادث",
-    "countShouldBeMoreThanZero": "عدد السيارات يجب ان يكون اكبر من صفر"
+    "countShouldBeMoreThanZero": "عدد السيارات يجب ان يكون اكبر من صفر",
+    "userReporter": "مبلغ الحادث",
+    "userReporterDummyText": "ابراهيم ايمن رحال",
+    "newReportPageDescription": "قم بتعبئة البيانات التالية لارسال تقرير الحادث",
+    "continueTheReport": "اكمل تعبئة التقرير"
 
 }
