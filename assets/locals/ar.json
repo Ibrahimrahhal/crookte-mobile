@@ -39,6 +39,11 @@
     "close": "اغلاق",
     "requestHelpButtonLoading": "جاري ارسال الطلب",
     "newReportPageTitle": "تقرير حادث جديد",
-    "locationDummyText": " شارع مكة - عمان",
-    "timeDateDummyText": "  ١٢:٣٠ مساء - ٢٠١٩/١٠/٢٠"
+    "locationDummyText":"١٤. شارع عيسى مرار",
+    "locationDummyTextSecondary": "المنطقة الشمالية - عمان",
+    "timeDateDummyText": "١٢:٣٠ مساء يوم الخميس",
+    "timeDateDummyTextSecondary": "٢٠١٩/١٠/٢٠",
+    "carInvolvedCount": "عدد السيارات في بالحادث",
+    "countShouldBeMoreThanZero": "عدد السيارات يجب ان يكون اكبر من صفر"
+
 }

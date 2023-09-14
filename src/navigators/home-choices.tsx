@@ -1,6 +1,8 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Home from "home/pages/home";
 import NewReport from "home/pages/new-report";
+import t from "home/utils/i18n";
+import { Text } from "react-native-paper";
 
 const Stack = createNativeStackNavigator();
 
@@ -18,7 +20,16 @@ export default function HomeChoicesNavigator() {
         name="NewReport"
         component={NewReport}
         options={{
-          headerShown: false,
+          headerTitle: () => (
+            <Text
+              variant="bodyLarge"
+              style={{
+                opacity: 0.8,
+              }}
+            >
+              {t("newReportPageTitle")}
+            </Text>
+          ),
         }}
       />
     </Stack.Navigator>
