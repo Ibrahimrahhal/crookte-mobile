@@ -48,6 +48,7 @@
     "userReporter": "مبلغ الحادث",
     "userReporterDummyText": "ابراهيم ايمن رحال",
     "newReportPageDescription": "قم بتعبئة البيانات التالية لارسال تقرير الحادث",
-    "continueTheReport": "اكمل تعبئة التقرير"
+    "continueTheReport": "اكمل تعبئة التقرير",
+    "HomeDrawerLabel": "الرئيسية"
 
 }
