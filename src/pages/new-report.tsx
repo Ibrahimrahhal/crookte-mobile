@@ -158,23 +158,27 @@ export default function NewReport({ navigation }: { navigation: any }) {
         </View>
       </View>
 
-        <Animatable.View animation={"fadeIn"} delay={1000} style={{
+      <Animatable.View
+        animation={"fadeIn"}
+        delay={1000}
+        style={{
           flex: 1,
-        }}>
-          <Button
-            mode="contained"
-            onPress={() => {}}
-            style={{
-              marginHorizontal: "5%",
-              width: "90%",
-              borderRadius: 10,
-              position: "absolute",
-              bottom: 20,
-            }}
-          >
-            {t("continueTheReport")}
-          </Button>
-        </Animatable.View>
+        }}
+      >
+        <Button
+          mode="contained"
+          onPress={() => {}}
+          style={{
+            marginHorizontal: "5%",
+            width: "90%",
+            borderRadius: 10,
+            position: "absolute",
+            bottom: 20,
+          }}
+        >
+          {t("continueTheReport")}
+        </Button>
+      </Animatable.View>
       <StatusBar style="dark" />
     </>
   );

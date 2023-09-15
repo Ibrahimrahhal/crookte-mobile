@@ -2,6 +2,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import GetStarted from "home/pages/get-started";
 import Auth from "home/pages/auth";
 import HomeNavigator from "home/navigators/home";
+import { MenuNavigator } from "./menu";
 
 const Stack = createStackNavigator();
 
@@ -24,7 +25,7 @@ export default function EntryNavigator() {
       />
       <Stack.Screen
         name="HomeNavigator"
-        component={HomeNavigator}
+        component={MenuNavigator}
         options={{
           headerShown: false,
         }}

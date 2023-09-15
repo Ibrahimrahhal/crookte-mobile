@@ -2,13 +2,20 @@ import t from "home/utils/i18n";
 import { AntDesign } from "@expo/vector-icons";
 import { StatusBar } from "expo-status-bar";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, TouchableOpacity } from "react-native";
 import configs from "configs";
 import HomeChoicesNavigator from "home/navigators/home-choices";
+import { useCallback } from "react";
 
 const Tab = createBottomTabNavigator();
 
-export default function HomeNavigator() {
+export default function HomeNavigator({ navigation }: any) {
+  const MenuTabBtn = useCallback(
+    (props: any) => (
+      <TouchableOpacity {...props} onPress={() => navigation.openDrawer()} />
+    ),
+    [],
+  );
   return (
     <>
       <Tab.Navigator
@@ -23,11 +30,11 @@ export default function HomeNavigator() {
         }}
       >
         <Tab.Screen
-          name="Help"
+          name="Menu"
           component={HomeChoicesNavigator}
           options={{
             headerShown: false,
-            tabBarLabel: t("helpTabLabel"),
+            tabBarLabel: t("menuTabLabel"),
             tabBarIcon: ({ size, color, focused }) => (
               <View style={styles.iconWrapper}>
                 <View
@@ -36,13 +43,10 @@ export default function HomeNavigator() {
                     ...(focused ? styles.iconIndicatorActive : {}),
                   }}
                 />
-                <AntDesign
-                  name="exclamationcircleo"
-                  size={size}
-                  color={color}
-                />
+                <AntDesign name="menuunfold" size={size} color={color} />
               </View>
             ),
+            tabBarButton: MenuTabBtn,
           }}
         />
         <Tab.Screen
@@ -103,12 +107,13 @@ export default function HomeNavigator() {
             ),
           }}
         />
+
         <Tab.Screen
-          name="Menu"
+          name="Help"
           component={HomeChoicesNavigator}
           options={{
             headerShown: false,
-            tabBarLabel: t("menuTabLabel"),
+            tabBarLabel: t("helpTabLabel"),
             tabBarIcon: ({ size, color, focused }) => (
               <View style={styles.iconWrapper}>
                 <View
@@ -117,7 +122,11 @@ export default function HomeNavigator() {
                     ...(focused ? styles.iconIndicatorActive : {}),
                   }}
                 />
-                <AntDesign name="menuunfold" size={size} color={color} />
+                <AntDesign
+                  name="exclamationcircleo"
+                  size={size}
+                  color={color}
+                />
               </View>
             ),
           }}
