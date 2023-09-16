@@ -1,5 +1,5 @@
 import { ScrollView, View, StyleSheet, Dimensions } from "react-native";
-import { Text, Button, Chip, Card } from "react-native-paper";
+import { Text, Button, Chip } from "react-native-paper";
 import { Image } from "expo-image";
 import { StatusBar } from "expo-status-bar";
 import config from "configs";
@@ -12,6 +12,7 @@ import CarCrash from "assets/imgs/car-crash.svg";
 import { FontAwesome5, FontAwesome } from "@expo/vector-icons";
 import Counter from "home/components/counter";
 import { useState } from "react";
+import Card from "home/components/card";
 
 export default function NewReport({ navigation }: { navigation: any }) {
   const [numberOfCarsInvolved, setNumberOfCarsInvolved] = useState(1);
@@ -44,114 +45,68 @@ export default function NewReport({ navigation }: { navigation: any }) {
           <View style={styles.cards}>
             <Animatable.View animation={"fadeInUp"} delay={500}>
               <Card
-                mode="outlined"
+                Icon={() => <FontAwesome name="user" size={24} color="black" />}
                 style={{
-                  backgroundColor: "#fafafa",
-                  borderColor: "rgba(0,0,0,0.1)",
+                  marginTop: 0,
                 }}
               >
-                <Card.Content>
-                  <View style={styles.cardItem}>
-                    <View style={styles.iconWrapper}>
-                      <FontAwesome name="user" size={24} color="black" />
-                    </View>
-                    <View style={styles.cardItemText}>
-                      <Text style={styles.locationTextMain}>
-                        {t("userReporterDummyText")}
-                      </Text>
-                      <Text style={styles.locationTextSecondary}>
-                        {t("userReporter")}
-                      </Text>
-                    </View>
-                  </View>
-                </Card.Content>
+                <Text style={styles.locationTextMain}>
+                  {t("userReporterDummyText")}
+                </Text>
+                <Text style={styles.locationTextSecondary}>
+                  {t("userReporter")}
+                </Text>
               </Card>
             </Animatable.View>
             <Animatable.View animation={"fadeInUp"} delay={600}>
               <Card
-                mode="outlined"
-                style={{
-                  backgroundColor: "#fafafa",
-                  borderColor: "rgba(0,0,0,0.1)",
-                  marginTop: 10,
-                }}
+                Icon={() => (
+                  <AntDesign name="enviroment" size={24} color="black" />
+                )}
               >
-                <Card.Content>
-                  <View style={styles.cardItem}>
-                    <View style={styles.iconWrapper}>
-                      <AntDesign name="enviroment" size={24} color="black" />
-                    </View>
-                    <View style={styles.cardItemText}>
-                      <Text style={styles.locationTextMain}>
-                        {t("locationDummyText")}
-                      </Text>
-                      <Text style={styles.locationTextSecondary}>
-                        {t("locationDummyTextSecondary")}
-                      </Text>
-                    </View>
-                  </View>
-                </Card.Content>
+                <Text style={styles.locationTextMain}>
+                  {t("locationDummyText")}
+                </Text>
+                <Text style={styles.locationTextSecondary}>
+                  {t("locationDummyTextSecondary")}
+                </Text>
               </Card>
             </Animatable.View>
             <Animatable.View animation={"fadeInUp"} delay={700}>
               <Card
-                mode="outlined"
-                style={{
-                  backgroundColor: "#fafafa",
-                  borderColor: "rgba(0,0,0,0.1)",
-                  marginTop: 10,
-                }}
+                Icon={() => (
+                  <AntDesign name="clockcircle" size={24} color="black" />
+                )}
               >
-                <Card.Content>
-                  <View style={styles.cardItem}>
-                    <View style={styles.iconWrapper}>
-                      <AntDesign name="clockcircle" size={24} color="black" />
-                    </View>
-                    <View style={styles.cardItemText}>
-                      <Text style={styles.locationTextMain}>
-                        {t("timeDateDummyText")}
-                      </Text>
-                      <Text style={styles.locationTextSecondary}>
-                        {t("timeDateDummyTextSecondary")}
-                      </Text>
-                    </View>
-                  </View>
-                </Card.Content>
+                <Text style={styles.locationTextMain}>
+                  {t("timeDateDummyText")}
+                </Text>
+                <Text style={styles.locationTextSecondary}>
+                  {t("timeDateDummyTextSecondary")}
+                </Text>
               </Card>
             </Animatable.View>
             <Animatable.View animation={"fadeInUp"} delay={800}>
               <Card
-                mode="outlined"
-                style={{
-                  backgroundColor: "#fafafa",
-                  borderColor: "rgba(0,0,0,0.1)",
-                  marginTop: 10,
-                }}
+                Icon={() => (
+                  <FontAwesome5 name="car-crash" size={24} color="black" />
+                )}
               >
-                <Card.Content>
-                  <View style={styles.cardItem}>
-                    <View style={styles.iconWrapper}>
-                      <FontAwesome5 name="car-crash" size={24} color="black" />
-                    </View>
-                    <View style={styles.cardItemText}>
-                      <Text style={styles.locationTextMain}>
-                        {t("carInvolvedCount")}
-                      </Text>
-                      <Text style={styles.locationTextSecondary}>
-                        {t("countShouldBeMoreThanZero")}
-                      </Text>
-                      <View style={styles.counterWrapper}>
-                        <Counter
-                          value={numberOfCarsInvolved}
-                          onChange={(newVal) => {
-                            if (newVal < 1) return;
-                            setNumberOfCarsInvolved(newVal);
-                          }}
-                        />
-                      </View>
-                    </View>
-                  </View>
-                </Card.Content>
+                <Text style={styles.locationTextMain}>
+                  {t("carInvolvedCount")}
+                </Text>
+                <Text style={styles.locationTextSecondary}>
+                  {t("countShouldBeMoreThanZero")}
+                </Text>
+                <View style={styles.counterWrapper}>
+                  <Counter
+                    value={numberOfCarsInvolved}
+                    onChange={(newVal) => {
+                      if (newVal < 1) return;
+                      setNumberOfCarsInvolved(newVal);
+                    }}
+                  />
+                </View>
               </Card>
             </Animatable.View>
           </View>
@@ -196,23 +151,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-  iconWrapper: {
-    width: 40,
-    height: 40,
-    borderRadius: 50,
-    backgroundColor: "rgba(0,0,0,0.1)",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  cardItem: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    gap: 15,
-  },
-  cardItemText: {
-    flexGrow: 1,
-  },
+
   locationTextMain: {
     fontSize: 14,
     fontWeight: "bold",
