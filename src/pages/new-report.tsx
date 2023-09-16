@@ -167,7 +167,9 @@ export default function NewReport({ navigation }: { navigation: any }) {
       >
         <Button
           mode="contained"
-          onPress={() => {}}
+          onPress={() => {
+            navigation.push("ReportSides");
+          }}
           style={{
             marginHorizontal: "5%",
             width: "90%",

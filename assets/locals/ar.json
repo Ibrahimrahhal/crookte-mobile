@@ -49,6 +49,10 @@
     "userReporterDummyText": "ابراهيم ايمن رحال",
     "newReportPageDescription": "قم بتعبئة البيانات التالية لارسال تقرير الحادث",
     "continueTheReport": "اكمل تعبئة التقرير",
-    "HomeDrawerLabel": "الرئيسية"
-
+    "HomeDrawerLabel": "الرئيسية",
+    "reportSides": "أطراف الحادث",
+    "accidentInfo": "معلومات الحادث",
+    "carInfo": "معلومات المركبة",
+    "carPictures": "صور المركبة",
+    "notes": "ملاحظات"
 }
