@@ -3,7 +3,6 @@ import LottieView from "lottie-react-native";
 import CardFlipAnimation from "assets/animations/id-flip.json";
 import CheckAnimation from "assets/animations/check.json";
 import { Button, Divider, Text } from "react-native-paper";
-import { Camera, CameraType } from "expo-camera";
 import { View, StyleSheet, TouchableOpacity } from "react-native";
 import Card from "home/components/card";
 import t from "home/utils/i18n";
@@ -38,7 +37,9 @@ const CheckIcon = () => (
     <FontAwesome name="check-circle" size={24} color={"white"} />
   </View>
 );
-export default function ReportSideCarInfo() {
+export default function ReportSideCarInfo(props: {
+  moveTo: (index: number) => void;
+}) {
   const [openDriverIDModal, setOpenDriverIDModal] = useState(false);
   const [openCarIDModal, setOpenCarIDModal] = useState(false);
   const [driverIDImage, setDriverIDImage] = useState<null | String[]>(null);
@@ -139,7 +140,9 @@ export default function ReportSideCarInfo() {
       >
         <Button
           mode="contained"
-          onPress={() => {}}
+          onPress={() => {
+            props.moveTo(1);
+          }}
           disabled={!driverIDImage || !carIDImage}
           style={{
             marginHorizontal: "5%",

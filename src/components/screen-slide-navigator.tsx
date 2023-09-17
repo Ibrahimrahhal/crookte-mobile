@@ -3,6 +3,7 @@ import { View } from "react-native-animatable";
 
 export default function ScreenSlideNavigator(props: {
   screens: FC<{ moveTo: () => void }>[];
+  moveNext: () => void;
 }) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isHiding, setIsHiding] = useState(false);
@@ -12,12 +13,13 @@ export default function ScreenSlideNavigator(props: {
     <View
       style={{ flex: 1 }}
       animation={
-        isHiding ? "fadeOutLeft" : isShowing ? "fadeInRight" : undefined
+        isHiding ? "fadeOutRight" : isShowing ? "fadeInLeft" : undefined
       }
       onAnimationEnd={() => {
         if (isHiding) {
           setIsHiding(false);
           setActiveIndex(activeIndex + 1);
+          props.moveNext();
           setIsShowing(true);
         }
       }}
