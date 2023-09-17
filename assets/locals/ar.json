@@ -60,6 +60,7 @@
     "DriverID": "رخصة القيادة",
     "uploadCarID": "ارفع صورة رخصة السيارة",
     "SavePicture": "حفظ الصورة",
-    "FlipTheCard": "اقلب البطاقة"
+    "FlipTheCard": "اقلب البطاقة",
+    "moveToAccidentInfo": "انتقل الى معلومات الحادث"
 
 }
