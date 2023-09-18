@@ -29,6 +29,9 @@ const theme = {
   colors: {
     ...DefaultTheme.colors,
     primary: configs.mainColor,
+    secondaryContainer: configs.mainColor,
+    onSecondaryContainer: "white",
+    outline: "rgba(0,0,0,0.2)",
   },
   fonts: configureFonts({config: 
     {

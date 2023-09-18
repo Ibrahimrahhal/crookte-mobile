@@ -61,6 +61,12 @@
     "uploadCarID": "ارفع صورة رخصة السيارة",
     "SavePicture": "حفظ الصورة",
     "FlipTheCard": "اقلب البطاقة",
-    "moveToAccidentInfo": "انتقل الى معلومات الحادث"
+    "moveToAccidentInfo": "انتقل الى معلومات الحادث",
+    "responsible": "متسبب ",
+    "notResponsible": "غير متسبب ",
+    "isUserResponsible": "هل هذا السائق متسبب بالحادث",
+    "pleaseSelectThePlaceOfDamage": "الرجاء تحديد مكان ضرر المركبة بالنقر",
+    "carDamages": "أضرار المركبة",
+    "moveToCarPictures": "انتقل الى صور المركبة"
 
 }
