@@ -67,6 +67,23 @@
     "isUserResponsible": "هل هذا السائق متسبب بالحادث",
     "pleaseSelectThePlaceOfDamage": "الرجاء تحديد مكان ضرر المركبة بالنقر",
     "carDamages": "أضرار المركبة",
-    "moveToCarPictures": "انتقل الى صور المركبة"
-
+    "moveToCarPictures": "انتقل الى صور المركبة",
+    "takePciture": "تصوير المركبة",
+    "takePcitureInfo": "سنقوم معا بالتقاط الصور للمركبة من جميع الجهات، اضغط على زر البدء عن الاستعداد",
+    "startTakingPictures": "ابدأ التقاط الصور",
+    "rightSide": "الجهة اليمنى",
+    "leftSide": "الجهة اليسرى",
+    "frontSide": "الجهة الامامية",
+    "backSide": "الجهة الخلفية",
+    "carPicturesInfo": "قم بالتقاط صور للمركبة من جميع الجهات",
+    "takePictureForThisSide": "التقط صورة لهذه الجهة",
+    "moveToAccidentNotes": "انتقل الى الملاحظات",
+    "takingPictureIsDone": "تم التقاط الصور",
+    "accidentNotes": "ملاحظات الحادث",
+    "accidentNotesInfo": "قم بكتابة ملاحظاتك عن الحادث",
+    "plsWriteTheDriverNotes": "الرجاء كتابة ملاحظاتك عن الحادث",
+    "finishReport": "اكمال التقرير",
+    "UserProfileSettingsDrawerLabel": 
+    "اعدادات الملف الشخصي",
+    "Logout": "تسجيل الخروج"
 }

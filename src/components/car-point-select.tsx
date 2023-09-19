@@ -1,5 +1,4 @@
 import { Image } from "expo-image";
-import { useState } from "react";
 import {
   TouchableWithoutFeedback,
   View,
@@ -75,6 +74,7 @@ export default function CarPointSelect(props: {
             return (
               <Animatable.View
                 animation={"bounceIn"}
+                key={point.ID}
                 style={[
                   styles.point,
                   {

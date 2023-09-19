@@ -16,11 +16,7 @@ import {
   Modal,
 } from "react-native-paper";
 import { Image } from "expo-image";
-import {
-  FontAwesome,
-  AntDesign,
-  MaterialCommunityIcons,
-} from "@expo/vector-icons";
+import { FontAwesome } from "@expo/vector-icons";
 
 import configs from "configs";
 import { useCallback, useEffect, useMemo, useReducer, useState } from "react";

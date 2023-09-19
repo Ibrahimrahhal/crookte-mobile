@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { View, StyleSheet } from "react-native";
-import { Button, Divider, SegmentedButtons, Text } from "react-native-paper";
+import { Button, Text } from "react-native-paper";
 import t from "home/utils/i18n";
 import CarPointSelect from "home/components/car-point-select";
 
