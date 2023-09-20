@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import t from "home/utils/i18n";
 import { View, StyleSheet, Dimensions } from "react-native";
 import { Button, Text } from "react-native-paper";
@@ -10,9 +10,14 @@ import FirstSlideInAppTour from "home/sections/app-tour/first-slide";
 import SecondSlideInAppTour from "home/sections/app-tour/second-slide";
 import LottieView from "lottie-react-native";
 import sendMail from "assets/animations/send-mail.json";
+import SwipeAnimation from "assets/animations/swiper-hint.json";
+import { StatusBar } from "expo-status-bar";
 
-export default function AppTour() {
-  const [activeIndex, setActiveIndex] = useState(0);
+function AppTourSwiper({
+  setActiveIndex,
+}: {
+  setActiveIndex: (index: number) => void;
+}) {
   const [visitedArray, setVisitedArray] = useState([false, false, false]);
   return (
     <View style={styles.upperLevelContainer}>
@@ -24,12 +29,6 @@ export default function AppTour() {
           setActiveIndex(index);
           visitedArray[index] = true;
           setVisitedArray([...visitedArray]);
-
-          //   if (index == (Platform.OS === "ios" ? 2 : 0))
-          //     setTimeout(() => {
-          //       this.mailAnimation.play();
-          //     }, 300);
-          //   this.setState(this.state);
         }}
         showsPagination={false}
       >
@@ -112,13 +111,55 @@ export default function AppTour() {
                 >
                   {t("waitForTheReportAppTourDesc")}
                 </Text>
-                <Button onPress={() => {}}>{t("getStartedAppTour")}</Button>
+                <Animatable.View
+                  animation={"fadeInUp"}
+                  delay={1000}
+                  style={styles.showButtonWrapper}
+                >
+                  <Button onPress={() => {}} style={styles.submitButton}>
+                    {t("getStartedAppTour")}
+                  </Button>
+                </Animatable.View>
               </View>
             </Animatable.View>
           )}
         </View>
       </Swiper>
     </View>
+  );
+}
+
+export default function AppTour() {
+  const [activeSlide, setActiveSlide] = useState(0);
+  const swipeHintAnimation = useRef<LottieView>(null);
+  useEffect(() => {
+    setTimeout(() => swipeHintAnimation.current?.play(), 2000);
+  }, []);
+  return (
+    <Fragment>
+      <View style={styles.heighContainer}>
+        <View style={styles.innerView}>
+          <AppTourSwiper setActiveIndex={setActiveSlide} />
+        </View>
+        {activeSlide !== 2 && (
+          <View style={{ ...styles.swipHintContainer } as any}>
+            <LottieView
+              ref={swipeHintAnimation}
+              style={{
+                height: 100,
+                alignItems: "center",
+              }}
+              loop={false}
+              onAnimationFinish={() => {
+                setTimeout(() => swipeHintAnimation.current?.play(), 2000);
+              }}
+              source={SwipeAnimation}
+            />
+          </View>
+        )}
+      </View>
+      <StatusBar style={"light"} />
+    </Fragment>
   );
 }
 
@@ -166,14 +207,29 @@ const styles = StyleSheet.create({
     marginTop: 20,
     fontWeight: "normal",
   },
-  buttonStyle: {
-    backgroundColor: "white",
+  heighContainer: {
+    flex: 1,
+    backgroundColor: config.mainColor,
   },
-  titleStyle: {
-    color: config.mainColor,
+  innerView: {
+    flex: 1,
   },
-  buttuonContainerStyle: {
+  swipHintContainer: {
     position: "absolute",
-    bottom: "10%",
+    bottom: "6%",
+    width: "100%",
+    alignItems: "center",
+    justifyContent: "center",
+    overflow: "hidden",
+  },
+  submitButton: {
+    backgroundColor: "white",
+    width: "90%",
+  },
+  showButtonWrapper: {
+    position: "absolute",
+    bottom: 100,
+    width: "100%",
+    alignItems: "center",
   },
 });
