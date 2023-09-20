@@ -16,6 +16,16 @@ export default function HomeNavigator({ navigation }: any) {
     ),
     [],
   );
+  const HelpTabBtn = useCallback(
+    (props: any) => (
+      <TouchableOpacity
+        {...props}
+        onPress={() => navigation.navigate("AppTour")}
+      />
+    ),
+    [],
+  );
+
   return (
     <>
       <Tab.Navigator
@@ -114,6 +124,7 @@ export default function HomeNavigator({ navigation }: any) {
           options={{
             headerShown: false,
             tabBarLabel: t("helpTabLabel"),
+            tabBarButton: HelpTabBtn,
             tabBarIcon: ({ size, color, focused }) => (
               <View style={styles.iconWrapper}>
                 <View
