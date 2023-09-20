@@ -3,12 +3,13 @@ import GetStarted from "home/pages/get-started";
 import Auth from "home/pages/auth";
 import HomeNavigator from "home/navigators/home";
 import { MenuNavigator } from "./menu";
+import AppTour from "home/pages/app-tour";
 
 const Stack = createStackNavigator();
 
 export default function EntryNavigator() {
   return (
-    <Stack.Navigator initialRouteName={"HomeNavigator"}>
+    <Stack.Navigator initialRouteName={"AppTour"}>
       <Stack.Screen
         name="GetStarted"
         component={GetStarted}
@@ -26,6 +27,13 @@ export default function EntryNavigator() {
       <Stack.Screen
         name="HomeNavigator"
         component={MenuNavigator}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="AppTour"
+        component={AppTour}
         options={{
           headerShown: false,
         }}
