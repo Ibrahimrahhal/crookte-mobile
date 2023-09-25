@@ -7,7 +7,7 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "format": "prettier --write \"src/**/*.tsx\" \"src/**/*.ts\"",
+    "format": "prettier --write \"./**/*.tsx\" \"src/**/*.ts\"",
     "shit": "expo . -c"
   },
   "dependencies": {
@@ -19,6 +19,7 @@
     "@react-navigation/native": "^6.1.7",
     "@react-navigation/native-stack": "^6.9.13",
     "@react-navigation/stack": "^6.3.17",
+    "@reduxjs/toolkit": "^1.9.6",
     "expo": "~49.0.8",
     "expo-camera": "~13.4.4",
     "expo-file-system": "~15.4.4",
@@ -40,7 +41,11 @@
     "react-native-stepper-ui": "0.0.9",
     "react-native-svg": "13.9.0",
     "react-native-swiper": "^1.6.0",
-    "react-native-tab-view": "^3.5.2"
+    "react-native-tab-view": "^3.5.2",
+    "react-redux": "^8.1.2",
+    "redux": "^4.2.1",
+    "@react-native-async-storage/async-storage": "1.18.2",
+    "expo-splash-screen": "~0.20.5"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",

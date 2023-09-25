@@ -1,13 +1,24 @@
 import { View, StyleSheet, ScrollView, Platform } from "react-native";
 import { Text, Button, TextInput } from "react-native-paper";
 import t from "home/utils/i18n";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import * as Animatable from "react-native-animatable";
+import { useLoginMutation } from "home/store/apis/auth";
+import { useDispatch } from "react-redux";
+import { login as loginAction } from "home/store/slices/auth";
 
-export default function Login() {
+export default function Login({ navigation }: { navigation: any }) {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [password, setPassword] = useState("");
   const [isShowPassword, setIsShowPassword] = useState(false);
+  const [login, loginMutation] = useLoginMutation();
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (loginMutation.data) {
+      dispatch(loginAction(loginMutation.data));
+      navigation.navigate("HomeNavigator");
+    }
+  }, [loginMutation.data]);
   return (
     <ScrollView style={styles.container}>
       <Animatable.View animation="fadeInUp">
@@ -49,7 +60,10 @@ export default function Login() {
         <View>
           <Button
             mode="contained"
-            onPress={() => console.log("Pressed")}
+            onPress={() => {
+              login({ phone_number: phoneNumber, password });
+            }}
+            loading={loginMutation.isLoading}
             style={styles.button}
           >
             {t("login_button")}

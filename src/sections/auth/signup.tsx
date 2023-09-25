@@ -1,12 +1,14 @@
 import { View, StyleSheet, ScrollView, Platform } from "react-native";
 import { Text, Button, TextInput } from "react-native-paper";
 import t from "home/utils/i18n";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import * as Animatable from "react-native-animatable";
 import { AntDesign } from "@expo/vector-icons";
 import configs from "configs/index";
-
-export default function SignUp() {
+import { useRegisterMutation } from "home/store/apis/auth";
+import { useDispatch } from "react-redux";
+import { login } from "home/store/slices/auth";
+export default function SignUp({ navigation }: { navigation: any }) {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [nationalId, setNationalId] = useState("");
@@ -16,6 +18,14 @@ export default function SignUp() {
   const [isShowPassword, setIsShowPassword] = useState(false);
   const [isShowRepeatPassword, setIsShowRepeatPassword] = useState(false);
   const [currentStep, setCurrentStep] = useState(0);
+  const [register, registerMutation] = useRegisterMutation();
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (registerMutation.data) {
+      dispatch(login(registerMutation.data));
+      navigation.navigate("HomeNavigator");
+    }
+  }, [registerMutation.data]);
   return (
     <ScrollView style={styles.scrollContainer}>
       <View style={styles.container}>
@@ -158,7 +168,16 @@ export default function SignUp() {
             ) : (
               <Button
                 mode="contained"
-                onPress={() => console.log("Pressed")}
+                onPress={() => {
+                  register({
+                    first_name: firstName,
+                    last_name: lastName,
+                    national_id: nationalId,
+                    phone_number: phoneNumber,
+                    password: password,
+                  });
+                }}
+                loading={registerMutation.isLoading}
                 style={{ ...styles.button, flexGrow: 1, marginRight: 10 }}
               >
                 {t("signup_button")}
@@ -167,6 +186,7 @@ export default function SignUp() {
             {currentStep > 0 && (
               <Button
                 mode="text"
+                disabled={registerMutation.isLoading}
                 onPress={() => setCurrentStep(currentStep - 1)}
                 style={{ ...styles.button, opacity: 0.5 }}
               >
