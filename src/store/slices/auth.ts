@@ -1,10 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
+import StorageUtil from "home/utils/storage";
 import TokenUtil from "home/utils/token";
 
 export interface AuthState {
   isLoggedIn: boolean;
   isAuthReady: boolean;
+  isUserFirstTime: boolean;
   AccessToken?: string;
   RefreshToken?: string;
 }
@@ -12,6 +14,7 @@ export interface AuthState {
 const initialState: AuthState = {
   isLoggedIn: false,
   isAuthReady: false,
+  isUserFirstTime: true,
 };
 
 export const authSlice = createSlice({
@@ -39,9 +42,16 @@ export const authSlice = createSlice({
     ready: (state) => {
       state.isAuthReady = true;
     },
+    firstTime: (state) => {
+      state.isUserFirstTime = false;
+    },
+    passedTour: (state) => {
+      state.isUserFirstTime = false;
+      StorageUtil.set("isUserFirstTime", "false");
+    },
   },
 });
 
-export const { login, logout, ready } = authSlice.actions;
+export const { login, logout, ready, firstTime } = authSlice.actions;
 
 export default authSlice.reducer;

@@ -17,12 +17,5 @@ export const store = configureStore({
   },
 });
 
-// @todo: find a better way to do this
-TokenUtil.getToken().then((token) => {
-  if (token) {
-    store.dispatch(login({ accessToken: token, refreshToken: "" }));
-  }
-  store.dispatch(ready());
-});
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;

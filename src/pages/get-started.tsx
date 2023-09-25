@@ -28,7 +28,9 @@ export default function GetStarted({ navigation }: any) {
           </Text>
           <Button
             mode="contained"
-            onPress={() => console.log("Pressed")}
+            onPress={() => {
+              navigation.push("AppTour");
+            }}
             style={styles.buttonStyle}
           >
             {t("getStartedButton")}

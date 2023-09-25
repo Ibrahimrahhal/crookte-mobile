@@ -19,6 +19,7 @@ import { store } from "home/store";
 import configs from "configs";
 import * as SplashScreen from "expo-splash-screen";
 import { useCallback, useEffect, useState } from "react";
+import "./init";
 
 SplashScreen.preventAutoHideAsync();
 I18nManager.allowRTL(true);

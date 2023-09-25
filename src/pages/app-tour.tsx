@@ -13,6 +13,7 @@ import sendMail from "assets/animations/send-mail.json";
 import SwipeAnimation from "assets/animations/swiper-hint.json";
 import { StatusBar } from "expo-status-bar";
 import RequestPoliceImage from "assets/imgs/requestPol.svg";
+import StorageUtil from "home/utils/storage";
 
 function AppTourSwiper({
   setActiveIndex,
@@ -182,7 +183,8 @@ export default function AppTour({ navigation }: any) {
           <AppTourSwiper
             setActiveIndex={setActiveSlide}
             navigate={() => {
-              navigation.navigate("HomeNavigator");
+              navigation.navigate("Authentication");
+              StorageUtil.set("isUserFirstTime", "false");
             }}
           />
         </View>

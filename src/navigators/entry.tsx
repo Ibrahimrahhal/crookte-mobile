@@ -4,12 +4,25 @@ import Auth from "home/pages/auth";
 import HomeNavigator from "home/navigators/home";
 import { MenuNavigator } from "./menu";
 import AppTour from "home/pages/app-tour";
+import { useSelector } from "react-redux";
 
 const Stack = createStackNavigator();
 
 export default function EntryNavigator() {
+  const isUserFirstTime = useSelector(
+    (state: any) => state.auth.isUserFirstTime,
+  );
+  const isUserLoggedIn = useSelector((state: any) => state.auth.isLoggedIn);
   return (
-    <Stack.Navigator initialRouteName={"Authentication"}>
+    <Stack.Navigator
+      initialRouteName={
+        isUserFirstTime
+          ? "GetStarted"
+          : isUserLoggedIn
+          ? "HomeNavigator"
+          : "Authentication"
+      }
+    >
       <Stack.Screen
         name="GetStarted"
         component={GetStarted}
