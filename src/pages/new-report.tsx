@@ -7,15 +7,79 @@ import { AntDesign } from "@expo/vector-icons";
 import { statusBarHeight } from "home/utils/generic";
 import t from "home/utils/i18n";
 import * as Animatable from "react-native-animatable";
-
+import * as Location from "expo-location";
 import CarCrash from "assets/imgs/car-crash.svg";
 import { FontAwesome5, FontAwesome } from "@expo/vector-icons";
 import Counter from "home/components/counter";
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Card from "home/components/card";
+import { useSelector } from "react-redux";
+import { AuthState } from "home/store/slices/auth";
+import MapUtil from "home/utils/maps";
+
+function formatDateTimeInArabic(date: Date) {
+  const weekdays = [
+    "الأحد",
+    "الاثنين",
+    "الثلاثاء",
+    "الأربعاء",
+    "الخميس",
+    "الجمعة",
+    "السبت",
+  ];
+
+  const day = weekdays[date.getDay()];
+  const hours = date.getHours();
+  const minutes = date.getMinutes();
+  const period = hours < 12 ? "صباحًا" : "مساءً";
+
+  const arabicHours = String(hours % 12 || 12);
+  const arabicMinutes = String(minutes).padStart(2, "0");
+
+  return `${day} ${arabicHours}:${arabicMinutes} ${period}`;
+}
+
+function formatDateAsString(date: Date) {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0"); // Month is zero-based
+  const day = String(date.getDate()).padStart(2, "0");
+
+  return `${year}/${month}/${day}`;
+}
 
 export default function NewReport({ navigation }: { navigation: any }) {
   const [numberOfCarsInvolved, setNumberOfCarsInvolved] = useState(1);
+  const userData = useSelector((state: { auth: AuthState }) => state.auth.user);
+  const [errorMsg, setErrorMsg] = useState("");
+  const [location, setLocation] = useState<any>(null);
+  const [locationStr, setLocationStr] = useState("");
+  useEffect(() => {
+    (async () => {
+      let { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== "granted") {
+        setErrorMsg("Permission to access location was denied");
+        return;
+      }
+      let location = await Location.getCurrentPositionAsync({});
+      setLocation(location);
+    })();
+  }, []);
+
+  const handleGetLocation = useCallback(async () => {
+    const results = await MapUtil.getStringAddressFromLocation({
+      lat: location.coords.latitude,
+      lng: location.coords.longitude,
+    });
+    await new Promise((resolve) => setTimeout(resolve, 2000));
+    setLocationStr(results);
+  }, [location]);
+
+  useEffect(() => {
+    if (location) {
+      handleGetLocation();
+    }
+  }, [location]);
+
   return (
     <>
       <View style={styles.header}>
@@ -51,7 +115,7 @@ export default function NewReport({ navigation }: { navigation: any }) {
                 }}
               >
                 <Text style={styles.locationTextMain}>
-                  {t("userReporterDummyText")}
+                  {userData?.firstName} {userData?.lastName}
                 </Text>
                 <Text style={styles.locationTextSecondary}>
                   {t("userReporter")}
@@ -64,9 +128,7 @@ export default function NewReport({ navigation }: { navigation: any }) {
                   <AntDesign name="enviroment" size={24} color="black" />
                 )}
               >
-                <Text style={styles.locationTextMain}>
-                  {t("locationDummyText")}
-                </Text>
+                <Text style={styles.locationTextMain}>{locationStr}</Text>
                 <Text style={styles.locationTextSecondary}>
                   {t("locationDummyTextSecondary")}
                 </Text>
@@ -79,10 +141,10 @@ export default function NewReport({ navigation }: { navigation: any }) {
                 )}
               >
                 <Text style={styles.locationTextMain}>
-                  {t("timeDateDummyText")}
+                  {formatDateTimeInArabic(new Date())}
                 </Text>
                 <Text style={styles.locationTextSecondary}>
-                  {t("timeDateDummyTextSecondary")}
+                  {formatDateAsString(new Date())}
                 </Text>
               </Card>
             </Animatable.View>
