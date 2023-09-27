@@ -4,7 +4,11 @@ import { Button, Text } from "react-native-paper";
 import t from "home/utils/i18n";
 import CarPointSelect from "home/components/car-point-select";
 
-export default function ReportSideAccidentInfo({ moveTo }: any) {
+export default function ReportSideAccidentInfo({
+  moveTo,
+  state,
+  updateState,
+}: any) {
   const [value, setValue] = useState("no");
   const [selectedPoints, setSelectedPoints] = useState<any>([]);
   return (

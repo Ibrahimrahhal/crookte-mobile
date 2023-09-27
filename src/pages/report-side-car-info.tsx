@@ -39,6 +39,8 @@ const CheckIcon = () => (
 );
 export default function ReportSideCarInfo(props: {
   moveTo: (index: number) => void;
+  updateState: any;
+  state: any;
 }) {
   const [openDriverIDModal, setOpenDriverIDModal] = useState(false);
   const [openCarIDModal, setOpenCarIDModal] = useState(false);

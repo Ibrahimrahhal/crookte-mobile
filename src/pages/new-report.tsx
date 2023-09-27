@@ -185,7 +185,9 @@ export default function NewReport({ navigation }: { navigation: any }) {
         <Button
           mode="contained"
           onPress={() => {
-            navigation.push("ReportSides");
+            navigation.push("ReportSides", {
+              cars: numberOfCarsInvolved,
+            });
           }}
           style={{
             marginHorizontal: "5%",

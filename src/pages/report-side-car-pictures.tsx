@@ -25,7 +25,11 @@ const sidesText = {
   front: t("frontSide"),
   back: t("backSide"),
 };
-export default function ReportSideCarPictures({ moveTo }: any) {
+export default function ReportSideCarPictures({
+  moveTo,
+  state,
+  updateState,
+}: any) {
   const [picturesHasStarted, setPicturesHasStarted] = useState(false);
   const [picturesHasEnded, setPicturesHasEnded] = useState(false);
 

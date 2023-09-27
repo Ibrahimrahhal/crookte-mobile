@@ -11,16 +11,20 @@ import ReportSideNotes from "home/pages/report-side-notes";
 
 const steps = [t("carInfo"), t("accidentInfo"), t("carPictures"), t("notes")];
 
-const screens = [
+const screens: any = [
   ReportSideCarInfo,
   ReportSideAccidentInfo,
   ReportSideCarPictures,
   ReportSideNotes,
 ];
 
-export default function ReportSides() {
+export default function ReportSides({ route }: any) {
+  const { cars } = route.params as { cars: number };
+
   const [activeCarIndex, setActiveCarIndex] = useState(0);
   const [activeStepIndex, setActiveStepIndex] = useState(0);
+  const [carsMap, setCarMap] = useState({});
+
   return (
     <>
       <View
@@ -28,12 +32,21 @@ export default function ReportSides() {
           flex: 1,
         }}
       >
-        <Stepper active={activeCarIndex} numberOfSteps={3} />
+        <Stepper active={activeCarIndex} numberOfSteps={cars} />
         <BreadcrumbStepper steps={steps} active={activeStepIndex} />
         <ScreenSlideNavigator
           screens={screens}
+          state={carsMap}
+          currentActive={activeCarIndex}
+          updateState={setCarMap}
+          currentActiveIndex={activeStepIndex}
           moveNext={() => {
-            setActiveStepIndex(activeStepIndex + 1);
+            if (activeStepIndex < steps.length - 1) {
+              setActiveStepIndex(activeStepIndex + 1);
+            } else {
+              setActiveStepIndex(0);
+              setActiveCarIndex(activeCarIndex + 1);
+            }
           }}
         />
       </View>

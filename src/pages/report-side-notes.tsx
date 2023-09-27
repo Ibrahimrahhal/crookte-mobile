@@ -9,7 +9,7 @@ import {
 import t from "home/utils/i18n";
 import { useState } from "react";
 
-export default function ReportSideNotes() {
+export default function ReportSideNotes({ moveTo, state, updateState }: any) {
   const [value, setValue] = useState("no");
   const [notes, setNotes] = useState("");
   return (
