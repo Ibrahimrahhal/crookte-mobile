@@ -136,6 +136,10 @@ export default function ReportSideCarPictures({
               [activeSide]: images[0],
             });
             if (activeSide === "back") {
+              updateState({
+                ...state,
+                car_images: Object.values(savedImages),
+              });
               setPicturesHasEnded(true);
               return;
             }

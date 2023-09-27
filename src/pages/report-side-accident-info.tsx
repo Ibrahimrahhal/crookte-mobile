@@ -9,8 +9,7 @@ export default function ReportSideAccidentInfo({
   state,
   updateState,
 }: any) {
-  const [value, setValue] = useState("no");
-  const [selectedPoints, setSelectedPoints] = useState<any>([]);
+  const selectedPoints = state?.selectedPoints || [];
   return (
     <>
       <View
@@ -32,7 +31,12 @@ export default function ReportSideAccidentInfo({
           </Text>
           <CarPointSelect
             selectedPoints={selectedPoints}
-            setSelectedPoints={setSelectedPoints}
+            setSelectedPoints={(points: any) => {
+              updateState({
+                ...state,
+                selectedPoints: points,
+              });
+            }}
           />
         </View>
         <Button

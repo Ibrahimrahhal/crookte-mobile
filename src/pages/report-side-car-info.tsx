@@ -42,10 +42,11 @@ export default function ReportSideCarInfo(props: {
   updateState: any;
   state: any;
 }) {
+  const { state, updateState } = props;
   const [openDriverIDModal, setOpenDriverIDModal] = useState(false);
   const [openCarIDModal, setOpenCarIDModal] = useState(false);
-  const [driverIDImage, setDriverIDImage] = useState<null | String[]>(null);
-  const [carIDImage, setCarIDImage] = useState<null | String[]>(null);
+  // const [driverIDImage, setDriverIDImage] = useState<null | String[]>(null);
+  // const [carIDImage, setCarIDImage] = useState<null | String[]>(null);
 
   return (
     <>
@@ -68,14 +69,14 @@ export default function ReportSideCarInfo(props: {
           />
           <TouchableOpacity
             onPress={() => {
-              if (!driverIDImage) setOpenDriverIDModal(true);
+              if (!state.pic_of_id) setOpenDriverIDModal(true);
             }}
           >
             <Card
               Icon={() => {
                 return (
                   <>
-                    {driverIDImage ? (
+                    {state.pic_of_id ? (
                       <CheckIcon />
                     ) : (
                       <FontAwesome name="id-card" size={20} color="black" />
@@ -89,7 +90,7 @@ export default function ReportSideCarInfo(props: {
                   {t("uploadDriverID")}
                 </Text>
                 <Animatable.View
-                  animation={driverIDImage ? "fadeOut" : "fadeIn"}
+                  animation={state.pic_of_id ? "fadeOut" : "fadeIn"}
                 >
                   <Feather name="upload" size={20} color="grey" />
                 </Animatable.View>
@@ -98,14 +99,14 @@ export default function ReportSideCarInfo(props: {
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => {
-              if (!carIDImage) setOpenCarIDModal(true);
+              if (!state.pic_of_car_id) setOpenCarIDModal(true);
             }}
           >
             <Card
               Icon={() => {
                 return (
                   <>
-                    {carIDImage ? (
+                    {state.pic_of_car_id ? (
                       <CheckIcon />
                     ) : (
                       <FontAwesome
@@ -120,7 +121,9 @@ export default function ReportSideCarInfo(props: {
             >
               <View style={styles.cardContent}>
                 <Text style={styles.cardTextMainTitle}>{t("uploadCarID")}</Text>
-                <Animatable.View animation={carIDImage ? "fadeOut" : "fadeIn"}>
+                <Animatable.View
+                  animation={state.pic_of_car_id ? "fadeOut" : "fadeIn"}
+                >
                   <Feather name="upload" size={20} color="grey" />
                 </Animatable.View>
               </View>
@@ -145,7 +148,7 @@ export default function ReportSideCarInfo(props: {
           onPress={() => {
             props.moveTo(1);
           }}
-          disabled={!driverIDImage || !carIDImage}
+          disabled={!state.pic_of_car_id || !state.pic_of_id}
           style={{
             marginHorizontal: "5%",
             width: "90%",
@@ -167,10 +170,16 @@ export default function ReportSideCarInfo(props: {
           onSubmit={(images: string[]) => {
             if (openDriverIDModal) {
               setOpenDriverIDModal(false);
-              setDriverIDImage(images);
+              updateState({
+                ...state,
+                pic_of_id: images,
+              });
             } else {
               setOpenCarIDModal(false);
-              setCarIDImage(images);
+              updateState({
+                ...state,
+                pic_of_car_id: images,
+              });
             }
           }}
           imagesNeeded={[

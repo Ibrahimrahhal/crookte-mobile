@@ -40,6 +40,7 @@ export default function ReportSides({ route }: any) {
           currentActive={activeCarIndex}
           updateState={setCarMap}
           currentActiveIndex={activeStepIndex}
+          numberOfCars={cars}
           moveNext={() => {
             if (activeStepIndex < steps.length - 1) {
               setActiveStepIndex(activeStepIndex + 1);

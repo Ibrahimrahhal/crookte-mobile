@@ -7,11 +7,14 @@ import {
   TextInput,
 } from "react-native-paper";
 import t from "home/utils/i18n";
-import { useState } from "react";
 
-export default function ReportSideNotes({ moveTo, state, updateState }: any) {
-  const [value, setValue] = useState("no");
-  const [notes, setNotes] = useState("");
+export default function ReportSideNotes({
+  moveTo,
+  state,
+  updateState,
+  numberOfCars,
+  currentActiveCar,
+}: any) {
   return (
     <>
       <View
@@ -55,18 +58,23 @@ export default function ReportSideNotes({ moveTo, state, updateState }: any) {
             }}
           >
             <SegmentedButtons
-              value={value}
-              onValueChange={setValue}
+              value={state.is_side_wrong}
+              onValueChange={(value) => {
+                updateState({
+                  ...state,
+                  is_side_wrong: value,
+                });
+              }}
               style={{
                 width: "80%",
               }}
               buttons={[
                 {
-                  value: "no",
+                  value: "false",
                   label: t("notResponsible"),
                 },
                 {
-                  value: "yes",
+                  value: "true",
                   label: t("responsible"),
                 },
               ]}
@@ -97,14 +105,21 @@ export default function ReportSideNotes({ moveTo, state, updateState }: any) {
             style={styles.textInput}
             label={t("notes")}
             mode="outlined"
-            value={notes}
+            value={state.side_note}
             numberOfLines={10}
-            onChangeText={(text) => setNotes(text)}
+            onChangeText={(text) =>
+              updateState({
+                ...state,
+                side_note: text,
+              })
+            }
           />
         </View>
         <Button
           mode="contained"
-          onPress={() => {}}
+          onPress={() => {
+            moveTo(4);
+          }}
           disabled={false}
           style={{
             marginHorizontal: "5%",
@@ -114,7 +129,9 @@ export default function ReportSideNotes({ moveTo, state, updateState }: any) {
             bottom: 20,
           }}
         >
-          {t("finishReport")}
+          {currentActiveCar < numberOfCars - 1
+            ? t("moveToNextCar")
+            : t("finishReport")}
         </Button>
       </View>
     </>

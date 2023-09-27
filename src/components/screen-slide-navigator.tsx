@@ -7,11 +7,12 @@ export default function ScreenSlideNavigator(props: {
   state: { [key: number]: any };
   updateState: any;
   currentActive: number;
+  numberOfCars: number;
   currentActiveIndex: number;
 }) {
   const [isHiding, setIsHiding] = useState(false);
   const [isShowing, setIsShowing] = useState(false);
-  const CurrentActiveScreen = props.screens[props.currentActiveIndex];
+  const CurrentActiveScreen: any = props.screens[props.currentActiveIndex];
   return (
     <View
       style={{ flex: 1 }}
@@ -27,7 +28,9 @@ export default function ScreenSlideNavigator(props: {
       }}
     >
       <CurrentActiveScreen
-        state={props.state[props.currentActive]}
+        state={props.state[props.currentActive] || {}}
+        currentActiveCar={props.currentActive}
+        numberOfCars={props.numberOfCars}
         updateState={(state: any) => {
           props.updateState({
             ...props.state,
