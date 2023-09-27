@@ -26,6 +26,11 @@ export default function SignUp({ navigation }: { navigation: any }) {
       navigation.navigate("HomeNavigator");
     }
   }, [registerMutation.data]);
+  useEffect(() => {
+    if (registerMutation.error) {
+      alert(JSON.stringify(registerMutation.error));
+    }
+  });
   return (
     <ScrollView style={styles.scrollContainer}>
       <View style={styles.container}>
@@ -161,6 +166,12 @@ export default function SignUp({ navigation }: { navigation: any }) {
               <Button
                 mode="contained"
                 onPress={() => setCurrentStep(currentStep + 1)}
+                disabled={
+                  (currentStep === 0 &&
+                    (firstName.length < 2 || lastName.length < 2)) ||
+                  (currentStep === 1 &&
+                    (nationalId.length < 10 || phoneNumber.length < 10))
+                }
                 style={{ ...styles.button, flexGrow: 1, marginRight: 10 }}
               >
                 {t("next_button")}
@@ -177,6 +188,14 @@ export default function SignUp({ navigation }: { navigation: any }) {
                     password: password,
                   });
                 }}
+                disabled={
+                  firstName.length < 2 ||
+                  lastName.length < 2 ||
+                  nationalId.length < 10 ||
+                  phoneNumber.length < 10 ||
+                  password.length < 6 ||
+                  password !== repeatPassword
+                }
                 loading={registerMutation.isLoading}
                 style={{ ...styles.button, flexGrow: 1, marginRight: 10 }}
               >

@@ -24,6 +24,9 @@ import * as Location from "expo-location";
 import useColorAnimation from "home/hooks/useColorAnimation";
 import mapStyle from "assets/map-styles/default.json";
 import PoliceBike from "assets/animations/police-bike.json";
+import { useSelector } from "react-redux";
+import { AuthState } from "home/store/slices/auth";
+import MapUtil from "home/utils/maps";
 
 const RequestedHelpModal = ({
   visible,
@@ -95,6 +98,7 @@ export default function Home({ navigation }: any) {
   const hasSentRequestHelp = true;
   const [isAmbulanceSelected, setIsAmbulanceSelected] = useState(false);
   const [isFireCardSelected, _setIsFireCardSelected] = useState(false);
+  const userData = useSelector((state: { auth: AuthState }) => state.auth.user);
   const setIsFireCardSelected = ({ val }: { val: boolean }) => {
     if (val) setIsAmbulanceSelected(true);
     _setIsFireCardSelected(val);
@@ -112,11 +116,14 @@ export default function Home({ navigation }: any) {
       setLocation(location);
     })();
   }, []);
-  const handleGetLocation = useCallback(() => {
-    setTimeout(() => {
-      setLocationStr("شارع الجامعة الاردنية، عمان، الأردن");
-    }, 5000);
-  }, []);
+  const handleGetLocation = useCallback(async () => {
+    const results = await MapUtil.getStringAddressFromLocation({
+      lat: location.coords.latitude,
+      lng: location.coords.longitude,
+    });
+    await new Promise((resolve) => setTimeout(resolve, 2000));
+    setLocationStr(results);
+  }, [location]);
 
   return (
     <View style={styles.mainView}>
@@ -300,7 +307,9 @@ export default function Home({ navigation }: any) {
         style={styles.pageContainer}
         animation={!hasSelectedRequestHelp ? "fadeInUp" : "fadeOutDown"}
       >
-        <Text variant="bodyLarge">{t("welcome")}</Text>
+        <Text variant="bodyLarge">
+          {t("welcome").replace("name", userData?.firstName || "")}
+        </Text>
         <Text variant="headlineMedium" style={styles.newReportTitle}>
           {t("newReport")}
         </Text>

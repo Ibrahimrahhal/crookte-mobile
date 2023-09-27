@@ -63,6 +63,7 @@ export default function Login({ navigation }: { navigation: any }) {
             onPress={() => {
               login({ phone_number: phoneNumber, password });
             }}
+            disabled={phoneNumber.length < 10 || password.length < 6}
             loading={loginMutation.isLoading}
             style={styles.button}
           >

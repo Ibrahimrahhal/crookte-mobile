@@ -9,6 +9,13 @@ export interface AuthState {
   isUserFirstTime: boolean;
   AccessToken?: string;
   RefreshToken?: string;
+  user?: {
+    id: number;
+    nationalId: string;
+    firstName: string;
+    lastName: string;
+    phoneNumber: string;
+  };
 }
 
 const initialState: AuthState = {
@@ -31,6 +38,7 @@ export const authSlice = createSlice({
       state.isLoggedIn = true;
       state.AccessToken = action.payload.accessToken;
       state.RefreshToken = action.payload.refreshToken;
+      state.user = TokenUtil.decode(action.payload.accessToken);
       TokenUtil.saveToken(action.payload.accessToken);
     },
     logout: (state) => {

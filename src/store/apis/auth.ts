@@ -1,5 +1,5 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-
+import { createApi } from "@reduxjs/toolkit/query/react";
+import BaseQuery from "home/store/apis/base";
 type LoginResponse = {
   accessToken: string;
   refreshToken: string;
@@ -20,11 +20,11 @@ type RegisterPayload = {
 
 export const authAPI = createApi({
   reducerPath: "authAPI",
-  baseQuery: fetchBaseQuery({ baseUrl: "https://pokeapi.co/api/v2/" }),
+  baseQuery: BaseQuery,
   endpoints: (builder) => ({
     login: builder.mutation<LoginResponse, LoginPayload>({
       query: (payload) => ({
-        url: "login",
+        url: "auth/login",
         method: "POST",
         body: payload,
       }),
@@ -32,7 +32,7 @@ export const authAPI = createApi({
 
     register: builder.mutation<LoginResponse, RegisterPayload>({
       query: (payload) => ({
-        url: "register",
+        url: "auth/register",
         method: "POST",
         body: payload,
       }),

@@ -9,10 +9,14 @@ import {
   DrawerItemList,
 } from "@react-navigation/drawer";
 import UserProfile from "home/pages/user-profile";
+import { useDispatch, useSelector } from "react-redux";
+import { AuthState, logout } from "home/store/slices/auth";
 
 const Drawer = createDrawerNavigator();
 
 function CustomDrawerContent(props: any) {
+  const userData = useSelector((state: { auth: AuthState }) => state.auth.user);
+  const dispatch = useDispatch();
   return (
     <DrawerContentScrollView {...props}>
       <View
@@ -29,7 +33,7 @@ function CustomDrawerContent(props: any) {
                 fontWeight: "bold",
               }}
             >
-              ابراهيم رحال
+              {userData?.firstName} {userData?.lastName}
             </Text>
             <Text
               style={{
@@ -38,7 +42,7 @@ function CustomDrawerContent(props: any) {
                 marginTop: 5,
               }}
             >
-              09123456789
+              {userData?.nationalId}
             </Text>
           </View>
         </View>
@@ -61,7 +65,9 @@ function CustomDrawerContent(props: any) {
             {t("Logout")}
           </Text>
         )}
-        onPress={() => console.log("Assaasas")}
+        onPress={() => {
+          dispatch(logout());
+        }}
       />
     </DrawerContentScrollView>
   );

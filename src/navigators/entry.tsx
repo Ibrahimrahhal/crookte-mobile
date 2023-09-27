@@ -5,9 +5,10 @@ import HomeNavigator from "home/navigators/home";
 import { MenuNavigator } from "./menu";
 import AppTour from "home/pages/app-tour";
 import { useSelector } from "react-redux";
+import ProtectedHOC from "home/components/protected.page";
 
 const Stack = createStackNavigator();
-
+const ProtectedMenuNavigator = ProtectedHOC(MenuNavigator);
 export default function EntryNavigator() {
   const isUserFirstTime = useSelector(
     (state: any) => state.auth.isUserFirstTime,
@@ -39,7 +40,7 @@ export default function EntryNavigator() {
       />
       <Stack.Screen
         name="HomeNavigator"
-        component={MenuNavigator}
+        component={ProtectedMenuNavigator}
         options={{
           headerShown: false,
         }}
