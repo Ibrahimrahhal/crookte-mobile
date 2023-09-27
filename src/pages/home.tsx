@@ -1,6 +1,11 @@
 import * as Animatable from "react-native-animatable";
 import { statusBarHeight } from "home/utils/generic";
-import { View, StyleSheet, TouchableWithoutFeedback } from "react-native";
+import {
+  View,
+  StyleSheet,
+  TouchableWithoutFeedback,
+  BackHandler,
+} from "react-native";
 import MapView, { Marker } from "react-native-maps";
 import t from "home/utils/i18n";
 import LottieView from "lottie-react-native";
@@ -27,6 +32,7 @@ import PoliceBike from "assets/animations/police-bike.json";
 import { useSelector } from "react-redux";
 import { AuthState } from "home/store/slices/auth";
 import MapUtil from "home/utils/maps";
+import { useRequestPoliceUnitMutation } from "home/store/apis/request-police-unit";
 
 const RequestedHelpModal = ({
   visible,
@@ -68,7 +74,7 @@ const RequestedHelpModal = ({
             {t("wereInTheWayInfo")}
           </Text>
           <Button
-            onPress={() => {}}
+            onPress={closed}
             mode="contained"
             style={styles.policeInTheWayButton}
           >
@@ -99,6 +105,7 @@ export default function Home({ navigation }: any) {
   const [isAmbulanceSelected, setIsAmbulanceSelected] = useState(false);
   const [isFireCardSelected, _setIsFireCardSelected] = useState(false);
   const userData = useSelector((state: { auth: AuthState }) => state.auth.user);
+  const [requestHelp, requestHelpMutation] = useRequestPoliceUnitMutation();
   const setIsFireCardSelected = ({ val }: { val: boolean }) => {
     if (val) setIsAmbulanceSelected(true);
     _setIsFireCardSelected(val);
@@ -127,7 +134,12 @@ export default function Home({ navigation }: any) {
 
   return (
     <View style={styles.mainView}>
-      <RequestedHelpModal visible={isRequestHelpDone} closed={() => {}} />
+      <RequestedHelpModal
+        visible={isRequestHelpDone}
+        closed={() => {
+          BackHandler.exitApp();
+        }}
+      />
       <Animatable.View
         style={styles.mapContainer}
         onAnimationEnd={() => {
@@ -264,16 +276,25 @@ export default function Home({ navigation }: any) {
               >
                 <Button
                   mode="contained"
-                  onPress={() => {
-                    setIsRequestHelpLoading(true);
-                    setTimeout(() => {
-                      setIsRequestHelpLoading(false);
+                  onPress={async () => {
+                    try {
+                      await requestHelp({
+                        fire_track_needed: isFireCardSelected
+                          ? "true"
+                          : "false",
+                        ambulance_needed: isAmbulanceSelected
+                          ? "true"
+                          : "false",
+                        latitude: location.coords.latitude,
+                        longitude: location.coords.longitude,
+                      });
                       setIsRequestHelpDone(true);
-                    }, 3000);
+                    } catch (e: any) {
+                      alert(e.message);
+                    }
                   }}
                   style={{}}
-                  loading={isRequestHelpLoading}
-                  disabled={isRequestHelpLoading}
+                  loading={requestHelpMutation.isLoading}
                 >
                   {isRequestHelpLoading
                     ? t("requestHelpButton")
