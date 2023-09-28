@@ -101,6 +101,9 @@ export default function Home({ navigation }: any) {
   const [backgroundColor, finished] = useColorAnimation(
     selected === 0 ? configs.mainColor : configs.mainColorDarken,
   );
+  const accessToken = useSelector(
+    (state: { auth: AuthState }) => state.auth.AccessToken,
+  );
   const hasSentRequestHelp = true;
   const [isAmbulanceSelected, setIsAmbulanceSelected] = useState(false);
   const [isFireCardSelected, _setIsFireCardSelected] = useState(false);
@@ -287,6 +290,7 @@ export default function Home({ navigation }: any) {
                           : "false",
                         latitude: location.coords.latitude,
                         longitude: location.coords.longitude,
+                        token: accessToken as string,
                       });
                       setIsRequestHelpDone(true);
                     } catch (e: any) {

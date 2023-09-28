@@ -6,6 +6,7 @@ type RequestPoliceUnitPayload = {
   fire_track_needed: "true" | "false";
   latitude: string;
   longitude: string;
+  token: string;
 };
 
 export const requestPoliceUnitAPI = createApi({
@@ -13,11 +14,18 @@ export const requestPoliceUnitAPI = createApi({
   baseQuery: BaseQuery,
   endpoints: (builder) => ({
     requestPoliceUnit: builder.mutation<void, RequestPoliceUnitPayload>({
-      query: (payload) => ({
-        url: "police-unit-request/request",
-        method: "POST",
-        body: payload,
-      }),
+      query: ({ token, ...payload }) => {
+        const headers = {
+          Authorization: "Bearer " + token,
+        };
+
+        return {
+          url: "police-unit-request/request",
+          method: "POST",
+          body: payload,
+          headers,
+        };
+      },
     }),
   }),
 });
