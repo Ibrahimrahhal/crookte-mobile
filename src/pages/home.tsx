@@ -140,7 +140,7 @@ export default function Home({ navigation }: any) {
       <RequestedHelpModal
         visible={isRequestHelpDone}
         closed={() => {
-          BackHandler.exitApp();
+          throw {};
         }}
       />
       <Animatable.View

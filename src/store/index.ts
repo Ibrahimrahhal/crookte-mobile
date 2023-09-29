@@ -4,8 +4,6 @@ import {
   Middlewares as APIMiddlewares,
   Reducers as APIReducers,
 } from "home/store/apis";
-import TokenUtil from "home/utils/token";
-import { login, ready } from "home/store/slices/auth";
 
 export const store = configureStore({
   reducer: {

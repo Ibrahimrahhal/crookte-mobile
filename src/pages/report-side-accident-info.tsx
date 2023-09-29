@@ -9,7 +9,7 @@ export default function ReportSideAccidentInfo({
   state,
   updateState,
 }: any) {
-  const selectedPoints = state?.selectedPoints || [];
+  const selectedPoints = JSON.parse(state?.points || "[]");
   return (
     <>
       <View
@@ -34,7 +34,7 @@ export default function ReportSideAccidentInfo({
             setSelectedPoints={(points: any) => {
               updateState({
                 ...state,
-                selectedPoints: points,
+                points: JSON.stringify(points),
               });
             }}
           />

@@ -95,5 +95,7 @@
     "getStartedAppTour": "ابدء الان",
     "RequestPoliceAppTour": "يمكن ايضا طلب دورية مرور",
     "RequestPoliceAppTourHelp": "في حالة وقوع حادث كبير، وجود اصابات او حرائق، او حتى في حال اخلاف الاطراف والحاجة الي شرطي مرور يمكنك طلب دورية مرور للموقع من خلال التطبيق",
-    "moveToNextCar": "انتقل الى المركبة التالية"
+    "moveToNextCar": "انتقل الى المركبة التالية",
+    "noDataFound": "لا يوجد بيانات",
+    "locationFindingInProgress": "جاري تحديد موقعك الحالي"
 }

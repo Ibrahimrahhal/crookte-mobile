@@ -7,7 +7,6 @@ export default class MapUtil {
   }): Promise<string> {
     const baseUrl = "https://maps.googleapis.com/maps/api/geocode/json";
     const params = `latlng=${location.lat},${location.lng}&key=${this.apiKey}&language=ar`;
-    console.log(`${baseUrl}?${params}`);
     const result = await (await fetch(`${baseUrl}?${params}`)).json();
     return result.results[0].formatted_address.replace(
       /[A-Za-z].*[A-Za-z]/g,

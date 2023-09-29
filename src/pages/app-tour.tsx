@@ -14,6 +14,7 @@ import SwipeAnimation from "assets/animations/swiper-hint.json";
 import { StatusBar } from "expo-status-bar";
 import RequestPoliceImage from "assets/imgs/requestPol.svg";
 import StorageUtil from "home/utils/storage";
+import { useSelector } from "react-redux";
 
 function AppTourSwiper({
   setActiveIndex,
@@ -172,6 +173,7 @@ function AppTourSwiper({
 
 export default function AppTour({ navigation }: any) {
   const [activeSlide, setActiveSlide] = useState(0);
+  const isUserLoggedIn = useSelector((state: any) => state.auth.isLoggedIn);
   const swipeHintAnimation = useRef<LottieView>(null);
   useEffect(() => {
     setTimeout(() => swipeHintAnimation.current?.play(), 2000);
@@ -183,7 +185,8 @@ export default function AppTour({ navigation }: any) {
           <AppTourSwiper
             setActiveIndex={setActiveSlide}
             navigate={() => {
-              navigation.navigate("Authentication");
+              if (!isUserLoggedIn) navigation.navigate("Authentication");
+              else navigation.navigate("HomeNavigator");
               StorageUtil.set("isUserFirstTime", "false");
             }}
           />

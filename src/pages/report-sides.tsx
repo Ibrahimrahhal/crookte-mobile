@@ -8,6 +8,7 @@ import ReportSideAccidentInfo from "home/pages/report-side-accident-info";
 import { useState } from "react";
 import ReportSideCarPictures from "home/pages/report-side-car-pictures";
 import ReportSideNotes from "home/pages/report-side-notes";
+import { useCreateNewReportMutation } from "home/store/apis/report";
 
 const steps = [t("carInfo"), t("accidentInfo"), t("carPictures"), t("notes")];
 
@@ -24,7 +25,7 @@ export default function ReportSides({ route }: any) {
   const [activeCarIndex, setActiveCarIndex] = useState(0);
   const [activeStepIndex, setActiveStepIndex] = useState(0);
   const [carsMap, setCarMap] = useState({});
-
+  const [createNewReport, newReportMutation] = useCreateNewReportMutation();
   return (
     <>
       <View
@@ -41,12 +42,17 @@ export default function ReportSides({ route }: any) {
           updateState={setCarMap}
           currentActiveIndex={activeStepIndex}
           numberOfCars={cars}
+          loading={newReportMutation.isLoading}
           moveNext={() => {
             if (activeStepIndex < steps.length - 1) {
               setActiveStepIndex(activeStepIndex + 1);
-            } else {
+            } else if (activeCarIndex < cars - 1) {
               setActiveStepIndex(0);
               setActiveCarIndex(activeCarIndex + 1);
+            } else {
+              // createNewReport({
+              //   cars: Object.values(carsMap),
+              // });
             }
           }}
         />

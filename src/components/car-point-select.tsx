@@ -29,7 +29,6 @@ export default function CarPointSelect(props: {
       onPress={(event) => {
         let x = event.nativeEvent.locationX;
         let y = event.nativeEvent.locationY;
-        if (!event.isTrusted) console.log(x, y);
         let cancel: any = selectedPoints.find((point: any) => {
           return (
             x - getPointDim() < (true ? point.locationX : point.locationY) &&
@@ -40,7 +39,6 @@ export default function CarPointSelect(props: {
         });
         cancel = cancel || (x < 50 && y < 50);
         if (cancel) {
-          console.log(cancel);
           return;
         }
         setSelectedPoints([

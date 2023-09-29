@@ -128,7 +128,9 @@ export default function NewReport({ navigation }: { navigation: any }) {
                   <AntDesign name="enviroment" size={24} color="black" />
                 )}
               >
-                <Text style={styles.locationTextMain}>{locationStr}</Text>
+                <Text style={styles.locationTextMain}>
+                  {locationStr || t("locationFindingInProgress")}
+                </Text>
                 <Text style={styles.locationTextSecondary}>
                   {t("locationDummyTextSecondary")}
                 </Text>

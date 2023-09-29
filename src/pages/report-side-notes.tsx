@@ -14,6 +14,7 @@ export default function ReportSideNotes({
   updateState,
   numberOfCars,
   currentActiveCar,
+  loading,
 }: any) {
   return (
     <>
@@ -120,6 +121,7 @@ export default function ReportSideNotes({
           onPress={() => {
             moveTo(4);
           }}
+          loading={loading}
           disabled={false}
           style={{
             marginHorizontal: "5%",

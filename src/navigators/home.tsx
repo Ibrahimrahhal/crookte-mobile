@@ -6,6 +6,7 @@ import { View, StyleSheet, TouchableOpacity } from "react-native";
 import configs from "configs";
 import HomeChoicesNavigator from "home/navigators/home-choices";
 import { useCallback } from "react";
+import EmptyPage from "home/pages/empty";
 
 const Tab = createBottomTabNavigator();
 
@@ -61,7 +62,7 @@ export default function HomeNavigator({ navigation }: any) {
         />
         <Tab.Screen
           name="Reports"
-          component={HomeChoicesNavigator}
+          component={EmptyPage}
           options={{
             headerShown: false,
             tabBarLabel: t("reportsTabLabel"),
@@ -100,7 +101,7 @@ export default function HomeNavigator({ navigation }: any) {
         />
         <Tab.Screen
           name="Notifications"
-          component={HomeChoicesNavigator}
+          component={EmptyPage}
           options={{
             headerShown: false,
             tabBarLabel: t("notificationsTabLabel"),
