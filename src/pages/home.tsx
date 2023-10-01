@@ -168,7 +168,7 @@ export default function Home({ navigation }: any) {
                     height: "75%",
                   },
                 }
-            : undefined
+            : "fadeIn"
         }
       >
         <MapView

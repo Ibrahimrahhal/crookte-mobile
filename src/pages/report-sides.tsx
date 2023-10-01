@@ -50,6 +50,7 @@ export default function ReportSides({ route }: any) {
               setActiveStepIndex(0);
               setActiveCarIndex(activeCarIndex + 1);
             } else {
+              alert("Bad Internet Connection, Make sure you are connected to the internet and try again.");
               // createNewReport({
               //   cars: Object.values(carsMap),
               // });
